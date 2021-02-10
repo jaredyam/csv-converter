@@ -1,0 +1,6 @@
+#!/usr/bin/env python
+from csv_converter import csv2latex
+
+
+stdout = csv2latex(from_command_line=True)
+print(stdout)
