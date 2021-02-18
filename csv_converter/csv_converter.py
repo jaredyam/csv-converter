@@ -9,7 +9,8 @@ class CsvConverter():
     Attributes
     ----------
     csvfile : str
-        Path to .csv file.
+        Path to the .csv file.
+        If the input is not a valid path/file, try to read as the raw data.
     alignment : str, default='c' + 'l' * (n_cols - 1)
         Group of alignment specifiers consisting of (`c`, `l`, `r`) has the
         same length as the table columns. `c` literally represents center-aligned
@@ -76,9 +77,13 @@ class CsvConverter():
         return args
 
     def get_csv_generator(self):
-        return csv.reader(open(self.csvfile, 'r'))
+        try:
+            rawdata = open(self.csvfile, 'r')
             assert self.csvfile[-4:] == '.csv'
+        except FileNotFoundError:
+            rawdata = self.csvfile.splitlines()
 
+        return csv.reader(rawdata)
     def get_header_and_body(self):
         rows = self.get_csv_generator()
         header = next(rows)

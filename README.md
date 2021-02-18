@@ -48,9 +48,22 @@ Then,
 
 - `csv2plaintext`
 
+    - .csv file:
+
     ```python
     >>> from csv_converter import csv2plaintext
     >>> output = csv2plaintext('sample.csv'[, alignment='clr'])
+    ```
+
+    - raw data variable:
+
+    ```python
+    >>> rawdata = """header1,header2,header3
+    ... hi,this is a,csv file
+    ... center-aligned column,left-aligned column,right-aligned column
+    ... you can,check out the result,from stdout or necessary rendering
+    ... """
+    >>> output = csv2plaintext(rawdata[, alignment='clr'])
     ```
 
 - `csv2markdown`

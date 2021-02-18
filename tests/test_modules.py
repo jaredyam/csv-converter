@@ -30,3 +30,15 @@ def test_csv2latex():
     print(output)
     output = csv2latex('test.csv', alignment='ccc', pretty=True)
     print(output)
+
+
+def test_csv2plaintext_with_variable_input():
+    rawdata = """header1,header2,header3
+hi,this is a,csv file
+center-aligned column,left-aligned column,right-aligned column
+you can,check out the result,from stdout or necessary rendering
+"""
+    output = csv2plaintext(rawdata)
+    print(output)
+    output = csv2plaintext(rawdata, alignment='clr')
+    print(output)
