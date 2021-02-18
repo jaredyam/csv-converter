@@ -15,9 +15,9 @@ def test_csv2markdown():
     print(output)
     output = csv2markdown('test.csv', alignment='clr')
     print(output)
-    output = csv2markdown('test.csv', pretty=True)
+    output = csv2markdown('test.csv', pretty=False)
     print(output)
-    output = csv2markdown('test.csv', alignment='ccc', pretty=True)
+    output = csv2markdown('test.csv', alignment='ccc', pretty=False)
     print(output)
 
 
@@ -26,9 +26,9 @@ def test_csv2latex():
     print(output)
     output = csv2latex('test.csv', alignment='clr')
     print(output)
-    output = csv2latex('test.csv', pretty=True)
+    output = csv2latex('test.csv', pretty=False)
     print(output)
-    output = csv2latex('test.csv', alignment='ccc', pretty=True)
+    output = csv2latex('test.csv', alignment='ccc', pretty=False)
     print(output)
 
 

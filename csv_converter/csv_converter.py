@@ -24,17 +24,15 @@ class CsvConverter():
     def __init__(self,
                  csvfile=None,
                  alignment=None,
-                 pretty=False,
+                 pretty=True,
                  from_command_line=False):
 
         if from_command_line:
-            args = self.parse_args(dest_type=self.dest_type, pretty=pretty)
+            args = self.parse_args()
 
             csvfile = args.csvfile
             alignment = args.alignment
-            if pretty is False:
-                # the --pretty command line option is only available
-                # when the initial value is False
+            if not self.dest_type == 'plain text':
                 pretty = args.pretty
 
         self.csvfile = csvfile
@@ -68,13 +66,13 @@ class CsvConverter():
         parser.add_argument('alignment', type=str, nargs='?',
                             help=('group of alignment specifiers consisting of (c, l, r) '
                                   'with the same length of table columns'))
-        if pretty is False:
+        if not self.dest_type == 'plain text':
+            # In the CLI mode, plain text has pretty visualization by default,
+            # thus no need --pretty option
             parser.add_argument('--pretty', action='store_true',
                                 help='better visualization of stdout')
 
-        args = parser.parse_args()
-
-        return args
+        return parser.parse_args()
 
     def get_csv_generator(self):
         try:
@@ -84,6 +82,7 @@ class CsvConverter():
             rawdata = self.csvfile.splitlines()
 
         return csv.reader(rawdata)
+
     def get_header_and_body(self):
         rows = self.get_csv_generator()
         header = next(rows)

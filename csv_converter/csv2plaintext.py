@@ -16,7 +16,6 @@ class CsvToPlainText(CsvConverter):
                  from_command_line=False):
         super(CsvToPlainText, self).__init__(csvfile=csvfile,
                                              alignment=alignment,
-                                             pretty=True,
                                              from_command_line=from_command_line)
 
     @property
