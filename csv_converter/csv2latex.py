@@ -18,7 +18,7 @@ class CsvToLatex(CsvConverter):
         code = ['\n'.join(
             ('\\begin{table}',
              '\\centering\n\\resizebox{\\textwidth}{!}{%',
-             f'\\begin{{tabular}}{{{self.alignment}}}',
+             '\\begin{{tabular}}{{{}}}'.format(self.alignment),
              '\\toprule')
         )]
         code.append(self.generate_each_row(self.header,

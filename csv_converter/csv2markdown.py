@@ -47,8 +47,8 @@ class CsvToMarkdown(CsvConverter):
         # width [+ int] is for consisting padding space on both side of cell
         # text in count
         if input_specifier == 'c':
-            return f':{"-" * width}:' if width is not None else ':---:'
+            return ':{}:'.format('-' * width) if width is not None else ':---:'
         if input_specifier == 'l':
             return '-' * (width + 2) if width is not None else '---'
         if input_specifier == 'r':
-            return f'{"-" * (width + 1)}:' if width is not None else '---:'
+            return '{}:'.format('-' * (width + 1)) if width is not None else '---:'
