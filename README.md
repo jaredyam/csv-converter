@@ -4,7 +4,8 @@
 This is a Python utility for converting a .csv file to other readable table formats.
 
 **DEMO:**
-![demo-gif](./imgs/demo.gif)
+![demo-gif](https://user-images.githubusercontent.com/50312506/108581092-8b413980-7369-11eb-932e-3b458212176a.gif)
+
 
 
 ## Usage
