@@ -1,9 +1,6 @@
 from .csv_converter import CsvConverter
 
 
-__all__ = ['csv2latex']
-
-
 def csv2latex(*args, ** kwargs):
     return CsvToLatex(*args, ** kwargs).run()
 

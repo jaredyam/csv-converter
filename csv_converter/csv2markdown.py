@@ -1,9 +1,6 @@
 from .csv_converter import CsvConverter
 
 
-__all__ = ['csv2markdown']
-
-
 def csv2markdown(*args, **kwargs):
     return CsvToMarkdown(*args, **kwargs).run()
 

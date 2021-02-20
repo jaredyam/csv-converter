@@ -1,9 +1,6 @@
 from .csv_converter import CsvConverter
 
 
-__all__ = ['csv2plaintext']
-
-
 def csv2plaintext(*args, **kwargs):
     return CsvToPlainText(*args, **kwargs).run()
 
