@@ -12,8 +12,8 @@ This is a Python utility for converting a .csv file to other readable table form
 
 Supported options:
 
-- `alignment`: a string, which consists of alignment specifiers in ('c', 'l', 'r') and has the same length of table columns.
-    Literally, `c` is shorten for `center-aligned`, `l` means `left-aligned`, `r` means `right-aligned`, thereby, `clr` means that the first column of the table is center-aligned, the second column is left-aligned, and the third column is right-aligned.
+- `alignment`: a string consisting of alignment specifiers in `('c', 'l', 'r')`, has the same length of table columns.
+    Literally, `c` is shorten for `center-aligned`, and similarly `l` is for `left-aligned`, `r` is for `right-aligned`, thereby, `clr` denotes that a 3-column table with center-aligned, left-aligned, and right-aligned alignment in each column.
     By default, the first column of the table is center-aligned, and the other columns is left-aligned, i.e. for a 3-column table, `alignment=cll`;
 - `pretty`: bool value, means whether to format the stdout with a better visualization.
 
