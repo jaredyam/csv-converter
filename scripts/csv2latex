@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+import set_syspath
 from csv_converter import csv2latex
 
 
