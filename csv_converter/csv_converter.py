@@ -92,7 +92,12 @@ class CsvConverter():
 
     def get_max_width_each_col(self):
         rows = self.get_csv_generator()
-        return [max(len(i) for i in col) for col in zip(*rows)]
+        max_width_each_col = [len(h) if h else 1 for h in next(rows)]
+        for row in rows:
+            for i, cell in enumerate(row):
+                if len(cell) > max_width_each_col[i]:
+                    max_width_each_col[i] = len(cell)
+        return max_width_each_col
 
     def generate_each_row(self, row, separator,
                           is_header=False,
