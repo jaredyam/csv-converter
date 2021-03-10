@@ -103,7 +103,7 @@ class CsvConverter():
                           is_header=False,
                           is_split_line=False,
                           with_border=True):
-        row = [(cell.title() if is_header else cell) if cell
+        row = [(cell.title() if is_header and cell.islower() else cell) if cell
                else '-' for cell in row]
 
         if self.pretty and not is_split_line:
