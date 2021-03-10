@@ -81,14 +81,13 @@ class CsvConverter():
         except FileNotFoundError:
             rawdata = self.csvfile.splitlines()
 
-        return csv.reader(rawdata)
+        return ([i.strip() for i in row] for row in csv.reader(rawdata))
 
     def get_header_and_body(self):
         rows = self.get_csv_generator()
         header = next(rows)
-        body = (row for row in rows)
 
-        return header, body
+        return header, rows
 
     def get_max_width_each_col(self):
         rows = self.get_csv_generator()
@@ -97,13 +96,14 @@ class CsvConverter():
             for i, cell in enumerate(row):
                 if len(cell) > max_width_each_col[i]:
                     max_width_each_col[i] = len(cell)
+
         return max_width_each_col
 
     def generate_each_row(self, row, separator,
                           is_header=False,
                           is_split_line=False,
                           with_border=True):
-        row = [(cell.title() if is_header else cell).strip() if cell
+        row = [(cell.title() if is_header else cell) if cell
                else '-' for cell in row]
 
         if self.pretty and not is_split_line:
