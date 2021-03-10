@@ -75,11 +75,11 @@ class CsvConverter():
         return parser.parse_args()
 
     def get_csv_generator(self):
-        try:
-            rawdata = open(self.csvfile, 'r')
-            assert self.csvfile[-4:] == '.csv'
-        except FileNotFoundError:
+        # conditions for recognising raw data input
+        if len(self.csvfile.split('\n')) > 1 or len(self.csvfile.split(',')) > 1:
             rawdata = self.csvfile.splitlines()
+        else:
+            rawdata = open(self.csvfile, 'r')
 
         return ([i.strip() for i in row] for row in csv.reader(rawdata))
 
