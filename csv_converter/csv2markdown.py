@@ -26,6 +26,10 @@ class CsvToMarkdown(CsvConverter):
 
         return '\n'.join(code)
 
+    @property
+    def escape_chars(self):
+        return ('|',)
+
     def _generate_format_line(self):
         if self.pretty:
             formats = (self._get_header_underline(input_specifier, width)

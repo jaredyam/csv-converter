@@ -38,3 +38,7 @@ class CsvToLatex(CsvConverter):
         ))
 
         return '\n'.join(code)
+
+    @property
+    def escape_chars(self):
+        return ('&', '%',)

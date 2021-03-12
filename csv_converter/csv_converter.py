@@ -53,10 +53,14 @@ class CsvConverter():
             self.format_dict = {'c': '^', 'l': '<', 'r': '>'}
 
     def run(self):
-        raise NotImplementedError('expected implemention in the child class')
+        raise NotImplementedError
 
     def dest_type(self):
-        raise NotImplementedError('expected implemention in the child class')
+        raise NotImplementedError
+
+    @property
+    def escape_chars(self):
+        return ()
 
     def parse_args(self):
         parser = argparse.ArgumentParser(
@@ -105,6 +109,9 @@ class CsvConverter():
                           with_border=True):
         row = [(cell.title() if is_header and cell.islower() else cell) if cell
                else '-' for cell in row]
+
+        for c in self.escape_chars:
+            row = [cell.replace(c, '\\' + c) for cell in row]
 
         if self.pretty and not is_split_line:
             # pad space on both side of cell text for better visualization
