@@ -32,12 +32,12 @@ class CsvToMarkdown(CsvConverter):
 
     def _generate_format_line(self):
         if self.pretty:
-            formats = (self._get_header_underline(input_specifier, width)
+            formats = [self._get_header_underline(input_specifier, width)
                        for input_specifier, width
-                       in zip(self.alignment, self.max_width_each_col))
+                       in zip(self.alignment, self.max_width_each_col)]
         else:
-            formats = (self._get_header_underline(input_specifier)
-                       for input_specifier in self.alignment)
+            formats = [self._get_header_underline(input_specifier)
+                       for input_specifier in self.alignment]
 
         return self.generate_each_row(formats,
                                       separator='|',
