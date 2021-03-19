@@ -113,7 +113,8 @@ class CsvConverter():
                            'while the header only has {} fields').format(
                 ','.join(row), len(row), len(self.header)))
 
-        row = [(cell.title() if is_header and cell.islower() else cell) if cell
+        row = [(cell.title().replace('_', ' ')
+                if is_header and cell.islower() else cell) if cell
                else '-' for cell in row]
 
         for c in self.escape_chars:
