@@ -107,7 +107,7 @@ class CsvConverter():
                           is_header=False,
                           is_split_line=False,
                           with_border=True):
-        if len(row) > len(self.header):
+        if not is_split_line and len(row) > len(self.header):
             raise IOError(('inconsistent number of record fields. '
                            'The line \'{}\' has {} fields, '
                            'while the header only has {} fields').format(
