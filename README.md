@@ -47,6 +47,15 @@ Then,
 
 ### Package
 
+You should put this package in the same directory as your working scripts, otherwise you
+should first add the directory of this package to the `$PYTHONPATH`:
+
+```bash
+$ export PYTHONPATH=$PWD
+```
+
+then imports them as you want:
+
 - `csv2plaintext`
 
     - .csv file:
@@ -56,7 +65,7 @@ Then,
     >>> output = csv2plaintext('sample.csv'[, alignment='clr'])
     ```
 
-    - raw data variable:
+    - raw data variable (also supports csv-like string input):
 
     ```python
     >>> rawdata = """header1,header2,header3
