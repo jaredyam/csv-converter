@@ -38,7 +38,7 @@ hi,this is a,csv file
 center-aligned column,left-aligned column,right-aligned column
 you can,check out the result,from stdout or necessary rendering
 """
-    output = csv2plaintext(rawdata)
+    output = csv2plaintext(rawdata, raw_string=True)
     print(output)
-    output = csv2plaintext(rawdata, alignment='clr')
+    output = csv2plaintext(rawdata, raw_string=True, alignment='clr')
     print(output)

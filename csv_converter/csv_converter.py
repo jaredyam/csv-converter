@@ -2,15 +2,15 @@ import csv
 import argparse
 
 
-class CsvConverter():
+class CsvConverter:
 
     """Convert a .csv file to other readable formats.
 
     Attributes
     ----------
     csvfile : str
-        Path to the .csv file.
-        If the input is not a valid path/file, try to read as the raw data.
+        Path to the .csv file or csv-like raw string, depends on boolen argument
+        `raw_string`.
     alignment : str, default='c' + 'l' * (n_cols - 1)
         Group of alignment specifiers consisting of (`c`, `l`, `r`) has the
         same length as the table columns. `c` literally represents center-aligned
@@ -19,23 +19,28 @@ class CsvConverter():
         i.e. `alignment='c' + 'l' * (n_cols - 1)`.
     pretty : bool, default=False
         Whether to format the output text/source code with a better visualization.
+    raw_string : bool, default=False
+        Set to true if you want specific `csvfile` with csv-like raw string directly.
+    from_command_line: bool, default=False
+        Pass parameters with command line arguments.
     """
 
     def __init__(self,
                  csvfile=None,
                  alignment=None,
                  pretty=True,
+                 raw_string=False,
                  from_command_line=False):
-
         if from_command_line:
             args = self.parse_args()
 
-            csvfile = args.csvfile
+            csvfile = args.filename
             alignment = args.alignment
             if not self.dest_type == 'plain text':
                 pretty = args.pretty
 
         self.csvfile = csvfile
+        self.raw_string = raw_string
         self.header, self.body = self.get_header_and_body()
 
         if alignment is not None:
@@ -66,7 +71,8 @@ class CsvConverter():
         parser = argparse.ArgumentParser(
             'Convert .csv file to {} table'.format(self.dest_type))
 
-        parser.add_argument('csvfile', type=str, help='input .csv file')
+        parser.add_argument('filename', type=str,
+                            help='path to the .csv file')
         parser.add_argument('alignment', type=str, nargs='?',
                             help=('group of alignment specifiers consisting of (c, l, r) '
                                   'with the same length of table columns'))
@@ -80,7 +86,7 @@ class CsvConverter():
 
     def get_csv_generator(self):
         # conditions for recognising raw data input
-        if len(self.csvfile.split('\n')) > 1 or len(self.csvfile.split(',')) > 1:
+        if self.raw_string:
             rawdata = self.csvfile.splitlines()
         else:
             rawdata = open(self.csvfile, 'r')

@@ -10,9 +10,11 @@ class CsvToPlainText(CsvConverter):
     def __init__(self,
                  csvfile=None,
                  alignment=None,
+                 raw_string=False,
                  from_command_line=False):
         super(CsvToPlainText, self).__init__(csvfile=csvfile,
                                              alignment=alignment,
+                                             raw_string=raw_string,
                                              from_command_line=from_command_line)
 
     @property
